@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: SF-Pro-Display-Light, sans-serif;
+  src: url(./assets/fonts/SF-Pro-Display-Light.woff);
+}
+
+@font-face {
+  font-family: SF-Pro-Display-Regular, sans-serif;
+  src: url(./assets/fonts/SF-Pro-Display-Regular.woff);
+}
+
+@font-face {
+  font-family: SF-Pro-Display-SemiBold, sans-serif;
+  src: url(./assets/fonts/SF-Pro-Display-SemiBold.woff);
+}
+
+@font-face {
+  font-family: SF-Pro-Display-Bold, sans-serif;
+  src: url(./assets/fonts/SF-Pro-Display-Bold.woff);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: SF-Pro-Display-Regular, sans-serif;
+}
