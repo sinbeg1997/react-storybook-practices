@@ -1,26 +1,33 @@
 import React from "react";
 import cx from "classnames";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonBaseProps<E extends React.ElementType> = {
   size?: "small" | "medium" | "large";
   fullWidth?: boolean;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   variant?: "contained" | "outlined";
   color?: "primary" | "secondary";
-}
+  as?: E; // Accept all components
+  // as?: E extends "button" | "a" ? E : never; // Accept only button or a component
+};
 
-function Button({
+type ButtonProps<E extends React.ElementType> = ButtonBaseProps<E> &
+  Omit<React.ComponentProps<E>, keyof ButtonBaseProps<E>>;
+
+const Button = <E extends React.ElementType>({
   size = "small",
   fullWidth = false,
   startIcon = null,
   endIcon = null,
   variant = "contained",
   color = "primary",
+  as,
   ...props
-}: ButtonProps) {
+}: ButtonProps<E>) => {
+  const Component = as || "button";
   return (
-    <button
+    <Component
       {...props}
       className={cx(
         " text-[12px] leading-[1.67] font-bold  rounded-[8px] px-[12px] py-[6px] inline-flex gap-x-[8px] items-center justify-center",
@@ -44,8 +51,8 @@ function Button({
       {startIcon}
       {props.children}
       {endIcon}
-    </button>
+    </Component>
   );
-}
+};
 
 export default Button;

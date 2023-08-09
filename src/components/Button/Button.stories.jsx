@@ -1,9 +1,15 @@
 import Button from "./Button";
+import { Link } from "react-router-dom";
+import {
+  reactRouterParameters,
+  withRouter,
+} from "storybook-addon-react-router-v6";
 
 export default {
   component: Button,
   title: "Button",
   tags: ["autodocs"],
+  decorators: [withRouter],
 };
 
 export const Default = {
@@ -13,31 +19,30 @@ export const Default = {
     fullWidth: false,
     variant: "contained",
     color: "primary",
+    disabled: false,
   },
 };
 
-export const ButtonWithStartIcon = {
+export const AnchorButton = {
   args: {
-    children: "Button",
-    size: "small",
-    fullWidth: false,
-    startIcon: (
-      <div className="w-[16px] h-[16px] rounded-[4px] text-black text-[8px] bg-white">
-        icon
-      </div>
-    ),
+    children: "Go to Google",
+    as: "a",
+    target: "_blank",
+    href: "https://www.google.com.vn/",
   },
 };
 
-export const ButtonWithEndIcon = {
+export const LinkButton = {
   args: {
-    children: "Button",
-    size: "small",
-    fullWidth: false,
-    endIcon: (
-      <div className="w-[16px] h-[16px] rounded-[4px] text-black text-[8px] bg-white">
-        icon
-      </div>
-    ),
+    children: "Link Button",
+    as: Link,
+    to: "/",
+  },
+  parameters: {
+    reactRouter: reactRouterParameters({
+      routing: {
+        path: "/",
+      },
+    }),
   },
 };
